@@ -2,31 +2,31 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
-import pages.components.ModalWindow;
+import pages.components.ModalWindowComponent;
 
 public class AuthorizationFormTest extends TestBase {
 
-    public static final String URL = "/automation-practice-form";
-    String firstName = "Alyona";
-    String lastName = "Chernyakova";
-    String email = "test@test.com";
-    String sex = "Female";
-    String phoneNumber = "1234567890";
-    String monthOfBirth = "June";
-    String yearOfBirth = "1995";
-    String dayOfBirth = "03";
-    String picture = "foto.png";
-    String subject = "English";
-    String hobby = "Reading";
-    String currentAddress = "Indeed I live in Saint Petersburg";
-    String state = "Rajasthan";
-    String city = "Jaiselmer";
+    private static final String URL = "/automation-practice-form";
+    private String firstName = "Alyona",
+            lastName = "Chernyakova",
+            email = "test@test.com",
+            sex = "Female",
+            phoneNumber = "1234567890",
+            monthOfBirth = "June",
+            yearOfBirth = "1995",
+            dayOfBirth = "03",
+            picture = "foto.png",
+            subject = "English",
+            hobby = "Reading",
+            currentAddress = "Indeed I live in Saint Petersburg",
+            state = "Rajasthan",
+            city = "Jaiselmer";
+
+    RegistrationPage registrationPage = new RegistrationPage();
+    ModalWindowComponent modal = new ModalWindowComponent();
 
     @Test
-    void fillFormTestWithAllFields() {
-
-        RegistrationPage registrationPage = new RegistrationPage();
-        ModalWindow modal = new ModalWindow();
+    void fillFormWithAllFieldsTest() {
 
         registrationPage.openPage(URL)
                 .setFirstName(firstName)
@@ -43,7 +43,6 @@ public class AuthorizationFormTest extends TestBase {
                 .chooseCity(city)
                 .submit();
 
-
         modal.checkTitle()
                 .checkResult(firstName + " " + lastName)
                 .checkResult(email)
@@ -55,5 +54,57 @@ public class AuthorizationFormTest extends TestBase {
                 .checkResult(picture)
                 .checkResult(currentAddress)
                 .checkResult((state + " " + city));
+    }
+
+    @Test
+    public void fillFormWithRequiredFieldsTest() {
+        registrationPage.openPage(URL)
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setGender(sex)
+                .setNumber(phoneNumber)
+                .submit();
+
+            modal.checkTitle()
+                    .checkResult(firstName + " " + lastName)
+                    .checkResult(sex)
+                    .checkResult(phoneNumber);
+
+    }
+
+    @Test
+    public void closeModalWindowTest() {
+        registrationPage.openPage(URL)
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setGender(sex)
+                .setNumber(phoneNumber)
+                .submit();
+
+        modal.closeButton();
+    }
+
+    @Test
+    public void submitWithoutDataTest() {
+        registrationPage.openPage(URL)
+                .submit();
+    }
+
+    @Test
+    public void fillFormWithWrongDataTest() {
+
+        lastName = "W";
+        firstName = "U";
+        phoneNumber = "Number";
+
+        registrationPage.openPage(URL)
+                .setLastName(lastName)
+                .setFirstName(firstName)
+                .setGender(sex)
+                .setNumber(phoneNumber)
+                .submit();
+
+        modal.checkHidden();
+
     }
 }

@@ -1,43 +1,34 @@
-package io.github.alyonachern;
+package tests;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
 
-public class AuthorizationFormTest {
+public class AuthorizationFormTest extends TestBase {
 
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-        Configuration.pageLoadStrategy = "eager";
-    }
+    public static final String URL = "/automation-practice-form";
+    String firstName = "Alyona";
+    String lastName = "Chernyakova";
+    String email = "test@test.com";
+    String sex = "Female";
+    String phoneNumber = "1234567890";
+    String monthOfBirth = "June";
+    String yearOfBirth = "1995";
+    String expectedDate = "03 June,1995";
+    String subject = "English";
+    String hobby = "Reading";
+    String currentAddress = "Indeed I live in Saint Petersburg";
+    String state = "Rajasthan";
+    String city = "Jaiselmer";
 
     @Test
     void fillFormTest() {
 
-        String firstName = "Alyona";
-        String lastName = "Chernyakova";
-        String email = "test@test.com";
-        String sex = "Female";
-        String phoneNumber = "1234567890";
-        String monthOfBirth = "June";
-        String yearOfBirth = "1995";
-        String expectedDate = "03 June,1995";
-        String subject = "English";
-        String hobby = "Reading";
-        String currentAddress = "Indeed I live in Saint Petersburg";
-        String state = "Rajasthan";
-        String city = "Jaiselmer";
-
-
-        open("/automation-practice-form");
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
+        RegistrationPage registrationPage = new RegistrationPage();
+        registrationPage.openPage(URL);
 
         $("#firstName").setValue(firstName);
         $("#lastName").setValue(lastName);

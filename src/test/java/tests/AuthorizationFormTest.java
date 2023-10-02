@@ -2,10 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
-
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
+import pages.components.ModalWindow;
 
 public class AuthorizationFormTest extends TestBase {
 
@@ -17,7 +14,8 @@ public class AuthorizationFormTest extends TestBase {
     String phoneNumber = "1234567890";
     String monthOfBirth = "June";
     String yearOfBirth = "1995";
-    String expectedDate = "03 June,1995";
+    String dayOfBirth = "03";
+    String picture = "foto.png";
     String subject = "English";
     String hobby = "Reading";
     String currentAddress = "Indeed I live in Saint Petersburg";
@@ -25,41 +23,37 @@ public class AuthorizationFormTest extends TestBase {
     String city = "Jaiselmer";
 
     @Test
-    void fillFormTest() {
+    void fillFormTestWithAllFields() {
 
         RegistrationPage registrationPage = new RegistrationPage();
-        registrationPage.openPage(URL);
+        ModalWindow modal = new ModalWindow();
 
-        $("#firstName").setValue(firstName);
-        $("#lastName").setValue(lastName);
-        $("#userEmail").setValue(email);
-        $(byText(sex)).click();
-        $("#userNumber").setValue(phoneNumber);
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption(monthOfBirth);
-        $(".react-datepicker__year-select").selectOption(yearOfBirth);
-        $(".react-datepicker__day--003").click();
-        $("#subjectsInput").setValue(subject).pressEnter();
-        $(byText(hobby)).click();
-        $("#uploadPicture").uploadFromClasspath("foto.png");
-        $("#currentAddress").setValue(currentAddress);
-        $("#state").click();
-        $("#stateCity-wrapper").$(byText(state)).click();
-        $("#city").click();
-        $("#stateCity-wrapper").$(byText(city)).click();
-        $("#submit").click();
+        registrationPage.openPage(URL)
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(email)
+                .setGender(sex)
+                .setNumber(phoneNumber)
+                .setDateOfBirth(monthOfBirth, yearOfBirth, dayOfBirth)
+                .setSubjects(subject)
+                .setHobby(hobby)
+                .uploadPhoto(picture)
+                .setCurrentAddress(currentAddress)
+                .chooseState(state)
+                .chooseCity(city)
+                .submit();
 
-        $(".modal-body").shouldHave(text(firstName + " " + lastName));
-        $(".modal-body").shouldHave(text(email));
-        $(".modal-body").shouldHave(text(sex));
-        $(".modal-body").shouldHave(text(phoneNumber));
-        $(".modal-body").shouldHave(text(expectedDate));
-        $(".modal-body").shouldHave(text(subject));
-        $(".modal-body").shouldHave(text(hobby));
-        $(".modal-body").shouldHave(text("foto.png"));
-        $(".modal-body").shouldHave(text(currentAddress));
-        $(".modal-body").shouldHave(text(state + " " + city));
 
+        modal.checkTitle()
+                .checkResult(firstName + " " + lastName)
+                .checkResult(email)
+                .checkResult(sex)
+                .checkResult(phoneNumber)
+                .checkResult(dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
+                .checkResult(subject)
+                .checkResult(hobby)
+                .checkResult(picture)
+                .checkResult(currentAddress)
+                .checkResult((state + " " + city));
     }
-
 }

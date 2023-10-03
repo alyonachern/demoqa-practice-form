@@ -24,11 +24,10 @@ public class TextBoxTest extends TestBase {
                 .setPermanentAddress(permanentAddress)
                 .submitForm();
 
-        output.checkResult(fullName)
-                .checkResult(email)
-                .checkResult(email)
-                .checkResult(currentAddress)
-                .checkResult(permanentAddress);
+        output.checkResult("Name", fullName)
+                .checkResult("Email", email)
+                .checkResult("Current Address", currentAddress)
+                .checkResult("Permananet Address", permanentAddress);
     }
 
     @Test
@@ -37,7 +36,7 @@ public class TextBoxTest extends TestBase {
                 .setFullName(fullName)
                 .submitForm();
 
-        output.checkResult(fullName);
+        output.checkResult("Name", fullName);
     }
 
     @Test

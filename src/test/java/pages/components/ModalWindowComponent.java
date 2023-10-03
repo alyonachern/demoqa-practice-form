@@ -24,9 +24,9 @@ public class ModalWindowComponent {
         return this;
     }
 
-    public ModalWindowComponent checkResult(String string) {
+    public ModalWindowComponent checkResult(String key, String value) {
         checkVisible();
-        modalWindow.shouldHave(text(string));
+        modalWindow.shouldHave(text(key), text(value));
         return this;
     }
 

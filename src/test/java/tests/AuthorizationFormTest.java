@@ -44,16 +44,16 @@ public class AuthorizationFormTest extends TestBase {
                 .submit();
 
         modal.checkTitle()
-                .checkResult(firstName + " " + lastName)
-                .checkResult(email)
-                .checkResult(sex)
-                .checkResult(phoneNumber)
-                .checkResult(dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
-                .checkResult(subject)
-                .checkResult(hobby)
-                .checkResult(picture)
-                .checkResult(currentAddress)
-                .checkResult((state + " " + city));
+                .checkResult("Student Name", firstName + " " + lastName)
+                .checkResult("Student Email", email)
+                .checkResult("Gender", sex)
+                .checkResult("Mobile", phoneNumber)
+                .checkResult("Date of Birth", dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
+                .checkResult("Subjects", subject)
+                .checkResult("Hobbies", hobby)
+                .checkResult("Picture", picture)
+                .checkResult("Address", currentAddress)
+                .checkResult("State and City", state + " " + city);
     }
 
     @Test
@@ -66,9 +66,9 @@ public class AuthorizationFormTest extends TestBase {
                 .submit();
 
             modal.checkTitle()
-                    .checkResult(firstName + " " + lastName)
-                    .checkResult(sex)
-                    .checkResult(phoneNumber);
+                    .checkResult("Student Name", firstName + " " + lastName)
+                    .checkResult("Gender", sex)
+                    .checkResult("Mobile", phoneNumber);
 
     }
 
@@ -88,6 +88,8 @@ public class AuthorizationFormTest extends TestBase {
     public void submitWithoutDataTest() {
         registrationPage.openPage(URL)
                 .submit();
+
+        modal.checkHidden();
     }
 
     @Test

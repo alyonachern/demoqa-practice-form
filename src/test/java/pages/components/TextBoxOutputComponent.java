@@ -10,7 +10,7 @@ public class TextBoxOutputComponent {
     private SelenideElement output = $("#output");
 
    public void checkVisible() {
-       output.shouldBe(visible);
+       output.shouldNotBe(empty);
    }
 
    public void checkHidden() {

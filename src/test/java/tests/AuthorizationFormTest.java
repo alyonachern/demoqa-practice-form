@@ -3,27 +3,30 @@ package tests;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import pages.components.ModalWindowComponent;
+import utils.RandomDataUtils;
 
 public class AuthorizationFormTest extends TestBase {
 
-    private static final String URL = "/automation-practice-form";
-    private String firstName = "Alyona",
-            lastName = "Chernyakova",
-            email = "test@test.com",
-            sex = "Female",
-            phoneNumber = "1234567890",
-            monthOfBirth = "June",
-            yearOfBirth = "1995",
-            dayOfBirth = "03",
-            picture = "foto.png",
-            subject = "English",
-            hobby = "Reading",
-            currentAddress = "Indeed I live in Saint Petersburg",
-            state = "Rajasthan",
-            city = "Jaiselmer";
-
     RegistrationPage registrationPage = new RegistrationPage();
     ModalWindowComponent modal = new ModalWindowComponent();
+    RandomDataUtils ru = new RandomDataUtils();
+
+    private static final String URL = "/automation-practice-form";
+    private String firstName = ru.randomFirstName(),
+            lastName = ru.randomLastName(),
+            email = ru.randomEmail(),
+            sex = ru.randomGender(),
+            phoneNumber = ru.randomPhone(),
+            monthOfBirth = ru.randomDate()[0],
+            yearOfBirth = ru.randomDate()[1],
+            dayOfBirth = ru.randomDate()[2],
+            picture = "foto.png",
+            subject = ru.randomSubject(),
+            hobby = ru.randomHobby(),
+            currentAddress = ru.randomAddress(),
+            state = ru.randomState(),
+            city = ru.randomCity(state);
+
 
     @Test
     void fillFormWithAllFieldsTest() {

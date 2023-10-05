@@ -23,9 +23,6 @@ public class RandomDataUtils {
         stateAndCity.put("Rajasthan", new String[]{"Jaipur", "Jaiselmer"});
     }
 
-    private List<String> states = new ArrayList<>(stateAndCity.keySet());
-    private List<String[]> cities = new ArrayList<>(stateAndCity.values());
-
     public static String getRandomString(int length) {
         String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         StringBuilder result = new StringBuilder();

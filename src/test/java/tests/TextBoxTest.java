@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.TextBoxPage;
 import pages.components.TextBoxOutputComponent;
@@ -17,9 +18,8 @@ public class TextBoxTest extends TestBase {
             currentAddress = ru.getRandomString(25),
             permanentAddress = ru.getRandomString(10);
 
-
-
     @Test
+    @DisplayName("Заполнение всех полей на форме")
     public void fillAllFieldsTest() {
         textBoxPage.openPage(URL)
                 .setFullName(fullName)
@@ -35,6 +35,7 @@ public class TextBoxTest extends TestBase {
     }
 
     @Test
+    @DisplayName("Заполнение части полей на форме")
     public void fillSomeFieldsTest() {
         textBoxPage.openPage(URL)
                 .setFullName(fullName)
@@ -44,6 +45,7 @@ public class TextBoxTest extends TestBase {
     }
 
     @Test
+    @DisplayName("Отправка формы без данных")
     public void doNotFillFormTest() {
         textBoxPage.openPage(URL)
                 .submitForm();

@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import pages.components.ModalWindowComponent;
@@ -29,6 +30,7 @@ public class AuthorizationFormTest extends TestBase {
 
 
     @Test
+    @DisplayName("Отправка формы со всеми заполненными полями")
     void fillFormWithAllFieldsTest() {
 
         registrationPage.openPage(URL)
@@ -60,6 +62,7 @@ public class AuthorizationFormTest extends TestBase {
     }
 
     @Test
+    @DisplayName("Отправка формы только с обязательными полями")
     public void fillFormWithRequiredFieldsTest() {
         registrationPage.openPage(URL)
                 .setFirstName(firstName)
@@ -76,6 +79,7 @@ public class AuthorizationFormTest extends TestBase {
     }
 
     @Test
+    @DisplayName("Закрытие модального окна")
     public void closeModalWindowTest() {
         registrationPage.openPage(URL)
                 .setFirstName(firstName)
@@ -88,6 +92,7 @@ public class AuthorizationFormTest extends TestBase {
     }
 
     @Test
+    @DisplayName("Отправка формы без данных")
     public void submitWithoutDataTest() {
         registrationPage.openPage(URL)
                 .submit();
@@ -96,6 +101,7 @@ public class AuthorizationFormTest extends TestBase {
     }
 
     @Test
+    @DisplayName("Отправка формы с некорректными данными")
     public void fillFormWithWrongDataTest() {
 
         lastName = "W";

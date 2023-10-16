@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,7 +8,7 @@ import pages.RegistrationPage;
 import pages.components.ModalWindowComponent;
 import utils.RandomDataUtils;
 
-@Story("Заполнение авторизационной формы")
+@Feature("Заполнение авторизационной формы")
 public class AuthorizationFormTest extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();

@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,7 +8,7 @@ import pages.TextBoxPage;
 import pages.components.TextBoxOutputComponent;
 import utils.RandomDataUtils;
 
-@Story("Заполнение текстовой формы")
+@Feature("Заполнение текстовой формы")
 public class TextBoxTest extends TestBase {
 
     TextBoxPage textBoxPage = new TextBoxPage();

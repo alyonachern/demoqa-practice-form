@@ -3,6 +3,7 @@ package tests;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import pages.components.ModalWindowComponent;
@@ -33,6 +34,7 @@ public class AuthorizationFormTest extends TestBase {
 
 
     @Test
+    @Tag("auth_form")
     @DisplayName("Отправка формы со всеми заполненными полями")
     void fillFormWithAllFieldsTest() {
 
@@ -65,6 +67,7 @@ public class AuthorizationFormTest extends TestBase {
     }
 
     @Test
+    @Tag("auth_form")
     @DisplayName("Отправка формы только с обязательными полями")
     public void fillFormWithRequiredFieldsTest() {
         registrationPage.openPage(URL)
@@ -82,6 +85,7 @@ public class AuthorizationFormTest extends TestBase {
     }
 
     @Test
+    @Tag("auth_form")
     @DisplayName("Закрытие модального окна")
     public void closeModalWindowTest() {
         registrationPage.openPage(URL)
@@ -95,6 +99,7 @@ public class AuthorizationFormTest extends TestBase {
     }
 
     @Test
+    @Tag("auth_form")
     @DisplayName("Отправка формы без данных")
     public void submitWithoutDataTest() {
         registrationPage.openPage(URL)
@@ -104,6 +109,7 @@ public class AuthorizationFormTest extends TestBase {
     }
 
     @Test
+    @Tag("auth_form")
     @DisplayName("Отправка формы с некорректными данными")
     public void fillFormWithWrongDataTest() {
 

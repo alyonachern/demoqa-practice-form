@@ -34,6 +34,20 @@ dependencies {
     )
 }
 
-test {
+tasks.withType(Test) {
     useJUnitPlatform()
+    systemProperties(System.getProperties())
 }
+
+task auth_form(type: Test) {
+    useJUnitPlatform{
+        includeTags("auth_form")
+    }
+}
+
+task text_box(type: Test) {
+    useJUnitPlatform{
+        includeTags("text_box")
+    }
+}
+

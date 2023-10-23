@@ -3,6 +3,7 @@ package tests;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.TextBoxPage;
 import pages.components.TextBoxOutputComponent;
@@ -22,6 +23,7 @@ public class TextBoxTest extends TestBase {
             permanentAddress = ru.getRandomString(10);
 
     @Test
+    @Tag("text_box")
     @DisplayName("Заполнение всех полей на форме")
     public void fillAllFieldsTest() {
         textBoxPage.openPage(URL)
@@ -38,6 +40,7 @@ public class TextBoxTest extends TestBase {
     }
 
     @Test
+    @Tag("text_box")
     @DisplayName("Заполнение части полей на форме")
     public void fillSomeFieldsTest() {
         textBoxPage.openPage(URL)
@@ -48,6 +51,7 @@ public class TextBoxTest extends TestBase {
     }
 
     @Test
+    @Tag("text_box")
     @DisplayName("Отправка формы без данных")
     public void doNotFillFormTest() {
         textBoxPage.openPage(URL)

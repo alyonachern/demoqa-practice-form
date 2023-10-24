@@ -1,6 +1,8 @@
 package pages;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
+import helpers.Attach;
 import io.qameta.allure.Step;
 import pages.components.BasePage;
 import pages.components.CalendarComponent;
@@ -85,7 +87,9 @@ public class RegistrationPage extends BasePage {
 
     @Step("Загрузить картинку")
     public RegistrationPage uploadPhoto(String picture) {
-        uploadPictureInput.uploadFromClasspath("foto.png");
+        if (!Configuration.browser.equalsIgnoreCase("firefox")){
+            uploadPictureInput.uploadFromClasspath("foto.png");
+        }
         return this;
     }
 

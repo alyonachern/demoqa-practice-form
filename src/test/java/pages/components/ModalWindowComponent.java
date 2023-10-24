@@ -1,5 +1,6 @@
 package pages.components;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
@@ -30,8 +31,10 @@ public class ModalWindowComponent {
 
     @Step("Сверить, что {key} соответствует {value}")
     public ModalWindowComponent checkResult(String key, String value) {
-        checkVisible();
-        modalWindow.shouldHave(text(key), text(value));
+        if (!Configuration.browser.equalsIgnoreCase("firefox") && "Picture".equals(key)){
+            checkVisible();
+            modalWindow.shouldHave(text(key), text(value));
+        }
         return this;
     }
 

@@ -38,9 +38,7 @@ public class TestBase {
 
     @AfterEach
     void addAttachments() {
-        if (!Configuration.browser.equalsIgnoreCase("firefox")){
-            Attach.screenshotAs("Last screenshot");
-        }
+        Attach.screenshotAs("Last screenshot");
         if (!Configuration.browser.equalsIgnoreCase("firefox")){
             Attach.browserConsoleLogs();
         }
